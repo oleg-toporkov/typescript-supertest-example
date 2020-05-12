@@ -105,3 +105,6 @@ dist
 
 .idea
 target
+allure-report
+allure-results
+xunit*

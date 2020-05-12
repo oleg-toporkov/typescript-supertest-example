@@ -7,7 +7,9 @@
     "pretest": "npm run clean && npm run tsc",
     "test": "multi='xunit=xunit_result-.xml spec=- mocha-allure2-reporter=-' mocha src/test/**/*.ts",
     "generate-report": "allure generate allure-results -o allure-report",
-    "open-report": "npm run generate-report && allure open allure-report"
+    "open-report": "npm run generate-report && allure open allure-report",
+    "build": "npm run test || true && npm run generate-report",
+    "start": "node target/app.js"
   },
   "dependencies": {
     "@types/chai": "4.2.11",
@@ -15,6 +17,7 @@
     "@types/supertest": "2.0.8",
     "allure-commandline": "2.13.0",
     "chai": "4.2.0",
+    "express": "4.17.1",
     "mocha": "7.1.2",
     "mocha-allure2-reporter": "0.0.3",
     "mocha-multi": "1.1.3",
