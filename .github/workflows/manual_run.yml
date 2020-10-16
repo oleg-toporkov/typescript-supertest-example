@@ -14,7 +14,8 @@ jobs:
       - uses: actions/checkout@v2
 
       - name: Print parameters
-        run: echo ${{ text }}
+        run: |
+          echo "TEXT: ${{ github.event.inputs.text }}"
       
       - name: Run tests
         run: npm run clean && npm run test
