@@ -1,0 +1,20 @@
+name: CI
+on: 
+  workflow_dispatch:
+    inputs:
+      text:
+        description: 'Text to be printed in the console'     
+        required: true
+        default: 'Hello'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Print parameters
+        run: echo ${{ text }}
+      
+      - name: Run tests
+        run: npm run clean && npm run test
