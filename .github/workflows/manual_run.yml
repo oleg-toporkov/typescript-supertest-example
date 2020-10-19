@@ -1,14 +1,12 @@
 name: CI
 on: 
+  repository_dispatch:
+    types: [run-e2e]
+
   workflow_dispatch:
-    inputs:
-      text:
-        description: 'Text to be printed in the console'     
-        required: true
-        default: 'Hello'
 
 jobs:
-  build:
+  run_e2e:
     runs-on: ubuntu-latest
     steps:
       - name: Setup Node.js
