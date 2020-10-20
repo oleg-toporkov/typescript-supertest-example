@@ -32,13 +32,13 @@ jobs:
 
           if [ $TEXT_TO_PRINT == oleg ]
           then
-            echo '::set-env name=GREETING::${{ env.OLEG_GREETING }}'
+            echo '::set-env name=GREETING::$OLEG_GREETING'
           elif [ $TEXT_TO_PRINT == OLEG ]
           then
             echo '::set-env name=GREETING::"Angry Oleg"'
           else
             echo "Using input: $TEXT_TO_PRINT"
-            echo '::set-env name=GREETING::${{ env.TEXT_TO_PRINT }}'
+            echo '::set-env name=GREETING::$TEXT_TO_PRINT'
           fi
 
       - name: Print parameters
