@@ -32,13 +32,13 @@ jobs:
 
           if [ $TEXT_TO_PRINT == oleg ]
           then
-            echo '::set-env name=GREETING::$OLEG_GREETING'
+            echo "GREETING=${OLEG_GREETING}" >> $GITHUB_ENV
           elif [ $TEXT_TO_PRINT == OLEG ]
           then
-            echo '::set-env name=GREETING::"Angry Oleg"'
+            echo "GREETING=Angry OLEG" >> $GITHUB_ENV
           else
             echo "Using input: $TEXT_TO_PRINT"
-            echo '::set-env name=GREETING::$TEXT_TO_PRINT'
+            echo "GREETING=${TEXT_TO_PRINT}" >> $GITHUB_ENV
           fi
 
       - name: Print parameters
