@@ -21,11 +21,11 @@ jobs:
         
       - name: Map input
         run: |
-          if [ ${{ github.event.client_payload.text }} ]
+          if [ ${{ github.event.inputs.text }} ]
           then
-             export TEXT_TO_PRINT=${{ github.event.client_payload.text }}
-          else
              export TEXT_TO_PRINT=${{ github.event.inputs.text }}
+          else
+             export TEXT_TO_PRINT="NO text!"
           fi
 
           export OLEG_GREETING="Hi Oleg!"
