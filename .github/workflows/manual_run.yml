@@ -23,9 +23,9 @@ jobs:
         run: |
           if [ -n ${{ github.event.client_payload.text }} ]
           then
-             TEXT_TO_PRINT=${{ github.event.client_payload.text }}
+             set TEXT_TO_PRINT=${{ github.event.client_payload.text }}
           else
-             TEXT_TO_PRINT=${{ github.event.inputs.text }}
+             set TEXT_TO_PRINT=${{ github.event.inputs.text }}
           fi
 
           OLEG_GREETING="Hi Oleg!"
