@@ -6,7 +6,7 @@ on:
   workflow_dispatch:
     inputs:
       text:
-        description: 'Type your text\nDoes nothing'
+        description: 'Type your text'
         default: 'TEXT'
         required: true
 jobs:
@@ -18,10 +18,32 @@ jobs:
 
       - name: Checkout
         uses: actions/checkout@v2
+        
+      - name: Map input
+        run: |
+          if [ -n ${{ github.event.client_payload.text }} ]
+          then
+             TEXT_TO_PRINT=${{ github.event.client_payload.text }}
+          else
+             TEXT_TO_PRINT=${{ github.event.inputs.text }}
+          fi
+
+          OLEG_GREETING="Hi Oleg!"
+
+          if [ $TEXT_TO_PRINT == oleg ]
+          then
+            echo '::set-env name=GREETING::$OLEG_GREETING'
+          elif [ $TEXT_TO_PRINT == OLEG ]
+          then
+            echo '::set-env name=GREETING::"Angry Oleg"'
+          else
+            echo "Using input: $TEXT_TO_PRINT"
+            echo '::set-env name=GREETING::${{ TEXT_TO_PRINT}}'
+          fi
 
       - name: Print parameters
         run: |
-          echo "TEXT: ${{ github.event.inputs.text }}"
+          echo "TEXT: $GREETING"
 
       - name: Install dependencies
         run: npm install
