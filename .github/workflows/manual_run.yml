@@ -4,7 +4,11 @@ on:
     types: [run-e2e]
 
   workflow_dispatch:
-
+    inputs:
+      text:
+        description: 'Type your text\nDoes nothing'
+        default: 'TEXT'
+        required: true
 jobs:
   run_e2e:
     runs-on: ubuntu-latest
