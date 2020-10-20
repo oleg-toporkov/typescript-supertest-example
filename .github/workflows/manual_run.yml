@@ -32,7 +32,7 @@ jobs:
 
           if [ $TEXT_TO_PRINT == oleg ]
           then
-            echo "GREETING=${OLEG_GREETING}" >> $GITHUB_ENV
+            echo "GREETING=${{ secrets.GREETING }}" >> $GITHUB_ENV
           elif [ $TEXT_TO_PRINT == OLEG ]
           then
             echo "GREETING=Angry OLEG" >> $GITHUB_ENV
