@@ -23,22 +23,22 @@ jobs:
         run: |
           if [ -n ${{ github.event.client_payload.text }} ]
           then
-             set TEXT_TO_PRINT=${{ github.event.client_payload.text }}
+             export TEXT_TO_PRINT=${{ github.event.client_payload.text }}
           else
-             set TEXT_TO_PRINT=${{ github.event.inputs.text }}
+             export TEXT_TO_PRINT=${{ github.event.inputs.text }}
           fi
 
-          OLEG_GREETING="Hi Oleg!"
+          export OLEG_GREETING="Hi Oleg!"
 
-          if [ $TEXT_TO_PRINT == oleg ]
+          if [ ${{ env.TEXT_TO_PRINT }} == oleg ]
           then
-            echo '::set-env name=GREETING::$OLEG_GREETING'
-          elif [ $TEXT_TO_PRINT == OLEG ]
+            echo '::set-env name=GREETING::${{ env.OLEG_GREETING }}'
+          elif [ ${{ env.TEXT_TO_PRINT }} == OLEG ]
           then
             echo '::set-env name=GREETING::"Angry Oleg"'
           else
             echo "Using input: $TEXT_TO_PRINT"
-            echo '::set-env name=GREETING::${{ TEXT_TO_PRINT}}'
+            echo '::set-env name=GREETING::${{ env.TEXT_TO_PRINT }}'
           fi
 
       - name: Print parameters
