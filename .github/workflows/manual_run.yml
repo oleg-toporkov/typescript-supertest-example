@@ -21,7 +21,7 @@ jobs:
         
       - name: Map input
         run: |
-          if [ -n ${{ github.event.client_payload.text }} ]
+          if [ ${{ github.event.client_payload.text }} ]
           then
              export TEXT_TO_PRINT=${{ github.event.client_payload.text }}
           else
@@ -30,10 +30,10 @@ jobs:
 
           export OLEG_GREETING="Hi Oleg!"
 
-          if [ ${{ env.TEXT_TO_PRINT }} == oleg ]
+          if [ $TEXT_TO_PRINT == oleg ]
           then
             echo '::set-env name=GREETING::${{ env.OLEG_GREETING }}'
-          elif [ ${{ env.TEXT_TO_PRINT }} == OLEG ]
+          elif [ $TEXT_TO_PRINT == OLEG ]
           then
             echo '::set-env name=GREETING::"Angry Oleg"'
           else
